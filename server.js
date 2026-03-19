@@ -8,6 +8,7 @@ const verifyJWT = require('./middleware/verifyJWT');
 const connectDB = require('./config/connectDB.js');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
+const mongoSanitize = require('express-mongo-sanitize');
 const PORT = process.env.PORT ;
 const mongoose = require('mongoose');
 
@@ -25,7 +26,8 @@ app.get('/health', (req, res) => {
 app.use(credentials);  
 app.use(cors(corsOptions));                                                                                                      
 app.use(express.urlencoded({ extended: false }));                                                                               
-app.use(express.json());                                                                                                       
+app.use(express.json());      
+app.use(mongoSanitize());                                                                                                 
 app.use(cookieParser());           
 app.use('/register', require('./routes/register.js'));
 app.use('/auth', require('./routes/auth.js'));
