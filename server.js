@@ -26,10 +26,27 @@ app.get('/health', (req, res) => {
 app.use(credentials);  
 app.use(cors(corsOptions));                                                                                                      
 app.use(express.urlencoded({ extended: false }));                                                                               
-app.use(express.json());      
-app.use(mongoSanitize());                                                                                                 
+app.use(express.json());   
+// Source - https://stackoverflow.com/a/79668053
+// Posted by Mohammed Sersawy, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-03-19, License - CC BY-SA 4.0
+
+
+app.use((req, res, next) => {
+Object.defineProperty(req, 'query', {
+    ...Object.getOwnPropertyDescriptor(req, 'query'),
+    value: req.query,
+    writable: true,
+});
+next();
+});
+
+app.use(mongoSanitize({
+    allowDots: true,
+    replaceWith: '_'
+}));                                                                                                 
 app.use(cookieParser());      
-     
+
 app.use('/register', require('./routes/register.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use('/logout', require('./routes/logout'));
