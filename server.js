@@ -28,9 +28,11 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));                                                                               
 app.use(express.json());      
 app.use(mongoSanitize());                                                                                                 
-app.use(cookieParser());           
+app.use(cookieParser());      
+     
 app.use('/register', require('./routes/register.js'));
 app.use('/auth', require('./routes/auth.js'));
+app.use('/logout', require('./routes/logout'));
 app.use('/refresh', require('./routes/refresh'));
 app.use(verifyJWT);
 
