@@ -12,8 +12,9 @@ Mở terminal (PowerShell hoặc CMD) và chạy lệnh sau:
 ```bash
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ```
-*   Chạy lệnh lần 1: Copy kết quả dán vào `ACCESS_TOKEN_SECRET`.
-*   Chạy lệnh lần 2: Copy kết quả dán vào `REFRESH_TOKEN_SECRET`.
+
+- Chạy lệnh lần 1: Copy kết quả dán vào `ACCESS_TOKEN_SECRET`.
+- Chạy lệnh lần 2: Copy kết quả dán vào `REFRESH_TOKEN_SECRET`.
 
 ---
 
@@ -41,4 +42,4 @@ ACCESS_TOKEN_SECRET=chuoi_vừa_tạo_ở_bước_1
 REFRESH_TOKEN_SECRET=chuoi_vừa_tạo_ở_bước_1_lần_2
 ```
 
-> **Bảo mật:** Không bao giờ commit file `.env` lên GitHub. Hãy đảm bảo file `.gitignore` đã có dòng `.env`.
+## tạo user nhớ thêm trường Admin trong roles nếu muốn set admin 1 ai đó trong database
